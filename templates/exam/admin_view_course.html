@@ -1,0 +1,56 @@
+{% extends 'exam/adminbase.html' %}
+{% block content %}
+{% load static%}
+{% load widget_tweaks %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<br><br>
+<div class="container">
+  <div class="panel panel-primary rounded-0">
+    <div class="panel-heading rounded-0">
+      <h6 class="panel-title">Khóa học</h6>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+      <thead>
+        <tr>
+
+          <th class="text-center">Khóa học</th>
+          <th class="text-center">Tổng số câu hỏi</th>
+          <th class="text-center">Tổng số điểm</th>
+          <th class="text-center">Hành động</th>
+        </tr>
+      </thead>
+      {% for t in courses %}
+      <tr>
+        <td class="text-center"> {{t.course_name}}</td>
+        <td class="text-center">{{t.question_number}}</td>
+        <td class="text-center">{{t.total_marks}}</td>
+        <td class="text-center"><a class="btn btn-dark btn-xs" style="border-radius: 0%;" href="{% url 'delete-course' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a>
+        <a class="btn btn-dark btn-xs" style="border-radius: 0%;" href="{% url 'admin-view-request' t.id %}"><span class="fas fa-eye f-left"></span></a>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock content %}

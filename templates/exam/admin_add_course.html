@@ -1,0 +1,41 @@
+{% extends 'exam/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>HCMUE</title>
+    <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  a:link {
+        text-decoration: none;
+      }
+    
+  </style>
+</head>
+<h2 style="text-align:center;">Thêm khóa học</h2>
+<form method="POST" autocomplete="off" style="margin:100px;margin-top: 0px;">
+    {%csrf_token%}
+    <div class="form-group">
+      <label for="course_name">Tên khóa học</label>
+      {% render_field courseForm.course_name class="form-control rounded-0" %}
+
+      <label for="question_number">Tổng số câu hỏi</label>
+      {% render_field courseForm.question_number class="form-control rounded-0" placeholder="Ví dụ: 50" %}
+
+      <label for="total_marks">Tổng số điểm</label>
+      {% render_field courseForm.total_marks class="form-control rounded-0" placeholder="Ví dụ: 100" %}
+    </div>
+    
+
+    <button type="submit" class="btn btn-primary rounded-0">Thêm thông tin khóa học</button>
+  </form>
+<br><br><br>
+{% endblock content %}

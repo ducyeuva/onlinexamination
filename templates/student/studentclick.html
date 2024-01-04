@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>HCMUE</title>
+  <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+
+  <style media="screen">
+    .jumbotron {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    .jumbotron h1 {
+      text-align: center;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  {% include "exam/navbar.html" %}
+  <br><br>
+  <div class="jumbotron" style="margin-bottom:0px;">
+    <h1 class="display-4">HỆ THỐNG ÔN TẬP TRI THỨC</h1>
+    <p class="lead">Chào mừng các em đến với hệ thống ôn tập tri thức lớp 12!</p>
+    <hr class="my-4">
+    <p style ="strong">Chọn 1 trong các lựa chọn sau để truy cập vào hệ thống</p>
+    <p class="lead">
+      <a class="btn btn-danger rounded-0" href="studentsignup" role="button">Đăng ký</a>
+      <a class="btn btn-primary rounded-0" href="studentlogin" role="button">Đăng nhập</a>
+    </p>
+    <br><br><br><br><br><br>
+  </div>
+ 
+  {% include "exam/footer.html" %}
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+{% load static%}
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>HCMUE</title>
+  <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<br><br>
+<div class="container">
+  <div class="panel panel-primary rounded-0">
+    <div class="panel-heading rounded-0">
+      <h6 class="panel-title">Xem điểm</h6>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+      <thead>
+        <tr>
+
+          <th class="text-center">Tên bài kiểm tra</th>
+          
+          <th class="text-center">Hành động</th>
+        </tr>
+      </thead>
+      {% for t in courses %}
+      <tr>
+
+        <td class="text-center"> {{t.course_name}}</td>
+        
+        <td class="text-center"><a class="btn btn-dark btn-sm" style="border-radius: 0%;" href="{% url 'check-marks' t.id  %}"> Xem</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock content %}

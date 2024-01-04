@@ -1,0 +1,28 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <h1 class="text-center">Tiến Độ Học Tập Của {{ student.user.username }}</h1>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center">Khóa học</th>
+                <th class="text-center">Tiến độ</th>
+                <th class="text-center">Cập nhật lần cuối</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in progress_data %}
+
+            <tr>
+                <td class="text-center">{{ item.course.course_name }}</td>
+                <td class="text-center">{{ item.progress.progress_percentage }}% </td>
+                <td class="text-center">{{ item.progress.last_updated }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

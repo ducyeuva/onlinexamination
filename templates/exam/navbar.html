@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <title>HCMUE</title>
+  <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+  <style type="text/css">
+    .bs-example {
+      margin: 0px;
+
+    }
+    .bg-dark {
+    background-color: #212529!important;
+}
+    .navbar-brand {
+      font-size: 20px;
+      font-family: sans-serif;
+
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <img src="{% static 'image/logo.png' %}" width="120" height="70" />
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav">
+    
+        </div>
+
+        <div class="navbar-nav ">
+          <a style="padding-left: 30px;" href="/" class="nav-item nav-link text-secondary"> Trang chủ</a>
+          <a style="padding-left: 30px;" href="/contactus_view" class="nav-item nav-link text-secondary">Liên hệ với chúng tôi</a>
+          <a href="/student/studentclick" class="nav-item nav-link text-secondary">Học Sinh</a>
+          <a href="/adminclick" class="nav-item nav-link text-secondary">Admin</a>
+          
+        </div>
+
+      </div>
+    </nav>
+  </div>
+
+
+</body>
+
+</html>

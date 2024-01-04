@@ -1,0 +1,67 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+{% load static%}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>HCMUE</title>
+  <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+
+</head>
+
+<div class="container my-4">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="card border-primary mx-4 my-4">
+                <div class="card-body text-default">
+
+                    <h4 class="card-title">Tổng quan bài kiểm tra: </h4>
+                    <p class="card-text">
+                        </p><ul style="list-style:decimal;">
+                            <li>Khóa học: {{course.course_name}}</li>
+                            <li>Tổng số câu hỏi: {{total_questions}}</li>
+                            <li>Điểm: {{total_marks}}</li>
+                        </ul>
+                    <p></p>
+                    {% with exam_contents=course.examcontent_set.all %}
+                    {% if exam_contents %}
+                        <div>
+                            <label>Yêu cầu cần đạt:</label>
+                            <ul>
+                                {% for exam_content in exam_contents %}
+                                    {{ exam_content.exam_requirement }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% else %}
+                        <p>Chưa có yêu cầu cần đạt cho kỳ thi này.</p>
+                    {% endif %}
+                {% endwith %}
+
+
+                    <h4 class="card-title"> <strong >Lưu ý: </h4> </strong>
+                    <p class="card-text">
+                        </p><ul style="list-style:decimal;">
+                            <li>Tất cả câu hỏi là câu trắc nghiệm</li>
+                            <li><span class="text-danger">Chỉ có một lựa chọn là chính xác trong số những lựa chọn đã cho.</span></li>
+                            <li>Mỗi câu hỏi mang số điểm khác nhau.</li>
+                            <li>Cố gắng trả lời càng SỚM càng TỐT.</li>
+                            <li>Nếu bạn NHẤN làm mới hoặc quay lại trang trước, sẽ có một câu hỏi mới cho bạn và câu hỏi bạn đang trả lời sẽ được tính là số lần tham gia.</li>
+                            <li>Các câu hỏi được trình bày ngẫu nhiên.</li>
+                            <li>Bạn sẽ có thể xem điểm ngay lập tức một lần sau khi bạn gửi câu trả lời.</li>
+                        </ul>
+                    <p></p>
+                    <a href="{% url 'start-exam' course.id  %}" class="btn btn-primary btn-lg" style="border-radius:0px;margin-left: 400px">Kiểm tra</a>
+                </div>  
+                <div class="card-footer">Chúc các bạn thi tốt.</div>  
+            </div>  
+        </div>  
+
+    </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock content %}

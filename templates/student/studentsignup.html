@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>HCMUE</title>
+  <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+  <head>
+    <meta charset="utf-8">
+    <style>
+
+        form{
+           margin: 50px; 
+          
+        }
+
+        body {
+          background-repeat: no-repeat;
+          background-image: url('https://raw.githubusercontent.com/ducyeuva/bg/main/bg.jpg');
+          background-size: 100%; 
+        }
+        .container{
+            color: white;
+        }
+
+    </style>
+  </head>
+  <body>
+    {% include "exam/navbar.html" %}
+ 
+
+
+<br><br><br>
+
+<div class="container">
+  <h3 style="text-align: center;">Đăng ký tài khoản Học Sinh</h3>
+<form method="POST" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="first_name">Tên</label>
+          {% render_field userForm.first_name|attr:'required:true'  class="form-control form-control-sm rounded-0" %}
+        </div>
+        <div class="form-group col-md-6">
+          <label for="last_name">Họ</label>
+          {% render_field userForm.last_name|attr:'required:true'  class="form-control form-control-sm rounded-0" %}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="mobile">Số ĐT</label>
+          {% render_field studentForm.mobile|attr:'required:true'  class="form-control form-control-sm rounded-0" %}
+        </div>
+        <div class="form-group col-md-6">
+          <label for="address">Lớp</label>
+          {% render_field studentForm.address|attr:'required:true'  class="form-control form-control-sm rounded-0" %}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="username">Tên tài khoản</label>
+          {% render_field userForm.username|attr:'required:true'  class="form-control form-control-sm rounded-0"  %}
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Mật khẩu</label>
+          {% render_field userForm.password|attr:'required:true'  class="form-control form-control-sm rounded-0" %}
+        </div>
+      </div>
+
+
+    <button type="submit" class="btn btn-dark btn-lg rounded-0">Đăng ký</button>
+  </form>
+</div> 
+
+</body>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
+<br><br>
+  </body>
+</html>

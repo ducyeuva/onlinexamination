@@ -1,0 +1,54 @@
+{% extends 'exam/adminbase.html' %}
+{% block content %}
+{% load static%}
+{% load widget_tweaks %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<br><br>
+<div class="container">
+  <div class="panel panel-primary rounded-0">
+    <div class="panel-heading rounded-0">
+      <h6 class="panel-title">Khóa học</h6>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+      <thead>
+        <tr>
+
+          <th class="text-center">Tổng câu hỏi mức Hiểu</th>
+          <th class="text-center">Tổng câu hỏi mức Biết</th>
+          <th class="text-center">Tổng câu hỏi mức Vận dụng thấp</th>
+          <th class="text-center">Tổng câu hỏi mức Vận dụng cao</th>
+        </tr>
+      </thead>
+      {{ course_instance.course_name }}
+      <tr>
+        <td class="text-center"> {{difficulty_data.hieu}}</td>
+        <td class="text-center">{{difficulty_data.biet}}</td>
+        <td class="text-center">{{difficulty_data.van_dung_thap}}</td>
+        <td class="text-center">{{difficulty_data.van_dung_cao}}</td>
+    </table>
+  </div>
+</div>
+
+
+<br><br><br><br><br><br>
+{% endblock content %}

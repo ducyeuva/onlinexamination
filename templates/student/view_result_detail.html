@@ -1,0 +1,51 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HCMUE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="shortcut icon" href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" type="image/x-icon">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <style>
+    .correct-answer {
+      border: 2px solid #4CAF50; /* Màu xanh lá cây */
+    }
+
+    .incorrect-answer {
+      border: 2px solid #FF0000; /* Màu đỏ */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">Chi tiết kết quả</h1>
+        <p class="text-center">Kỳ thi: {{ result.exam.course_name }}</p>
+        <p class="text-center">Điểm: {{ result.marks }}</p>
+        <h2 class="text-center">Chi tiết kết quả</h2>
+        {% for detail in question_details %}
+          <div class="panel panel-default {% if detail.is_correct %}correct-answer{% else %}incorrect-answer{% endif %}">
+            <div class="panel-body">
+              <p>{{ detail.question_text }}</p>
+              <p>Câu trả lời đã chọn: {{ detail.selected_answer }}</p>
+              <p>Câu trả lời đúng: {{ detail.correct_answer }}</p>
+              <p>{% if detail.is_correct %}Đúng{% else %}Sai{% endif %}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock content %}

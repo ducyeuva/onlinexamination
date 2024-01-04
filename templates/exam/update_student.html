@@ -1,0 +1,50 @@
+{% extends 'exam/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style media="screen">
+    input[type=text], select,input[type=number] ,input[type=password], textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  </style>
+  <link  href="https://th.bing.com/th/id/OIP._2unhUk9v8d-QsxMjcKMxgHaDm?rs=1&pid=ImgDetMain.png" rel="shortcut icon">
+
+</head>
+
+<br><br>
+<h2 style="text-align:center;">Chỉnh sửa thông tin học sinh</h2>
+<div>
+  <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
+      {% csrf_token %}
+      <i class="fas fa-user"></i>
+        <label for="first_name">Tên</label>
+        {% render_field userForm.first_name class="form-control form-control-sm rounded-0" %}
+      <i class="fas fa-user"></i>
+        <label for="last_name">Họ</label>
+        {% render_field userForm.last_name class="form-control form-control-sm rounded-0"  %}
+      <i class="fa-solid fa-phone"></i>
+          <label for="mobile">Số ĐT</label>
+          {% render_field studentForm.mobile class="form-control form-control-sm rounded-0"  %}
+      <i class="fa-regular fa-address-card"></i>
+            <label for="address">Lớp</label>
+          {% render_field studentForm.address class="form-control form-control-sm rounded-0" placeholder="Address" %}
+      <i class="fa-solid fa-user-plus"></i>   
+        <label for="username">Tên tài khoản</label>
+        {% render_field userForm.username class="form-control form-control-sm rounded-0" placeholder="Username" %}
+      <i class="fa-solid fa-lock"></i>
+          <label for="password">Password</label>
+        {% render_field userForm.password class="form-control form-control-sm rounded-0" placeholder="Password" %} <br><br>
+        <br>
+    <input type="submit" class="btn btn-lg rounded-0 btn-dark" value="Chỉnh sửa" style="border-radius:0px;">
+  </form>
+</div>
+
+<br><br><br><br><br><br><br><br>
+{% endblock content %}

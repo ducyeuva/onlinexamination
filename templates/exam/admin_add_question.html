@@ -1,0 +1,39 @@
+{% extends 'exam/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+</head>
+<h2 style="text-align:center;">Thêm câu hỏi</h2>
+<form method="POST" autocomplete="off" style="margin:100px;margin-top: 0px;">
+    {%csrf_token%}
+    <div class="form-group">
+        <label for="question">Khóa học</label>
+      {% render_field questionForm.courseID|attr:'required:true' class="form-control form-control-sm rounded-0"  %}
+        <br>
+      <label for="question">Câu hỏi</label>
+      {% render_field questionForm.question|attr:'required:true' class="form-control form-control-sm rounded-0" %}
+        <br>
+      <label for="question_number">Điểm</label>
+      {% render_field questionForm.marks|attr:'required:true' class="form-control form-control-sm rounded-0"  %}
+        <br>
+      <label for="option1">Lựa chọn 1</label>
+      {% render_field questionForm.option1|attr:'required:true' class="form-control form-control-sm rounded-0"  %}
+        <br>
+      <label for="option2">Lựa chọn 2</label>
+      {% render_field questionForm.option2|attr:'required:true' class="form-control form-control-sm rounded-0" %}
+        <br>
+      <label for="option3">Lựa chọn 3</label>
+      {% render_field questionForm.option3|attr:'required:true' class="form-control form-control-sm rounded-0"  %}
+        <br>
+      <label for="option4">Lựa chọn 4</label>
+      {% render_field questionForm.option4|attr:'required:true' class="form-control form-control-sm rounded-0" %}
+        <br>
+      <label for="answer">Đáp án ĐÚNG</label>
+      {% render_field questionForm.answer|attr:'required:true' class="form-control form-control-sm rounded-0" %}
+       <br>
+      <label for="request">Mức độ</label>
+      {% render_field questionForm.difficulty_level|attr:'required:true' class="form-control form-control-sm rounded-0" %}
+    </div>
+    <button type="submit" class="btn btn-dark" style="border-radius:0px;">Gửi câu hỏi</button>
+  </form>
+<br><br><br>
+{% endblock content %}
