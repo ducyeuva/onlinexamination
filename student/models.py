@@ -11,7 +11,7 @@ class Student(models.Model):
     def get_name(self):
         return self.user.first_name+" "+self.user.last_name
     @property
-    def get_instance(self):
+    def get_instance(self): 
         return self
     def __str__(self):
         return f"{self.user.first_name}, {self.user.id}"

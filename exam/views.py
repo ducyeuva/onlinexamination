@@ -185,7 +185,6 @@ def admin_check_marks_view(request,pk):
     course = models.Course.objects.get(id=pk)
     student_id = request.COOKIES.get('student_id')
     student= SMODEL.Student.objects.get(id=student_id)
-
     results= models.Result.objects.all().filter(exam=course).filter(student=student)
     return render(request,'exam/admin_check_marks.html',{'results':results})
     

@@ -1,7 +1,6 @@
 {% extends 'student/studentbase.html' %}
 {% block content %}
 {% load static%}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +26,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="text-center">Chi tiết kết quả</h1>
-        <p class="text-center">Kỳ thi: {{ result.exam.course_name }}</p>
+        <p class="text-center">Kỳ thi: {{ result.exam.course_id }}</p>
         <p class="text-center">Điểm: {{ result.marks }}</p>
         <h2 class="text-center">Chi tiết kết quả</h2>
         {% for detail in question_details %}

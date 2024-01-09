@@ -33,6 +33,9 @@ class Result(models.Model):
     marks = models.PositiveIntegerField()
     date = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.student}, {self.exam}, {self.marks}, {self.date}"
+
 class ExamContent(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Khóa học')
     exam_requirement = models.TextField()

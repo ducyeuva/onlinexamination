@@ -83,33 +83,57 @@ def start_exam_view(request,pk):
 @login_required(login_url='studentlogin')
 @user_passes_test(is_student)
 def calculate_marks_view(request):
-    if request.COOKIES.get('course_id') is not None:
+    try:
         course_id = request.COOKIES.get('course_id')
-        course=QMODEL.Course.objects.get(id=course_id)  
-        total_marks=0
-        questions=QMODEL.Question.objects.all().filter(course=course)
-        for i in range(len(questions)):     #duyệt câu hỏi
-            selected_ans = request.COOKIES.get(str(i+1)) 
-            actual_answer = questions[i].answer
-            if selected_ans == actual_answer:
-                total_marks = total_marks + questions[i].marks
-        student = models.Student.objects.get(user_id=request.user.id)
-        result = QMODEL.Result()
-        progress = QMODEL.StudyProgress()
-        progress.student = student 
-        progress.course = course 
-        count_questions = QMODEL.Question.objects.filter(course = course).count() 
-        progress.progress_percentage = total_marks/count_questions * 100
-        progress.save()
-        # 10c 1d 10d
-        # 8d totalma
-        #  8/10 * 100
-        result.marks=total_marks
-        result.exam=course
-        result.student=student
-        result.save()
-        return HttpResponseRedirect('view-result') 
 
+        if course_id is not None:
+            course = QMODEL.Course.objects.get(id=course_id)
+            total_marks = 0
+            progress_percentage = 0
+            questions = QMODEL.Question.objects.filter(course=course)
+            print("Số lượng câu hỏi:", len(questions))
+
+            for i, question in enumerate(questions):
+                selected_ans = request.COOKIES.get(str(i + 1))
+                print("Câu trả lời đã chọn:", selected_ans)
+                actual_answer = question.answer
+                print("Câu trả lời đúng:", actual_answer)
+
+                if selected_ans is not None and selected_ans == actual_answer:
+                    total_marks += question.marks
+
+            if request.user and request.user.id:
+                student = Student.objects.get(user_id=request.user.id)
+                result = QMODEL.Result()
+                result.marks = total_marks
+                print("Tổng điểm:", total_marks)
+                result.exam = course
+                result.student = student
+                result.save()
+
+                progress_check = QMODEL.StudyProgress.objects.filter(student=student, course=course).exists()
+
+                if progress_check:  # tức đã tồn tại
+                    progress = QMODEL.StudyProgress.objects.filter(student=student, course=course).first()
+                    count_questions = QMODEL.Question.objects.filter(course=course).count()
+                    progress.progress_percentage = total_marks / count_questions * 100
+                    progress.save()
+                else:
+                    progress = QMODEL.StudyProgress()
+                    progress.student = student
+                    progress.course = course
+                    count_questions = QMODEL.Question.objects.filter(course=course).count()
+                    progress.progress_percentage = total_marks / count_questions * 100
+                    progress.save()
+
+    except QMODEL.Course.DoesNotExist:
+        # Xử lý trường hợp không tìm thấy khóa học
+        pass
+    except Student.DoesNotExist:
+        # Xử lý trường hợp không tìm thấy sinh viên
+        pass
+
+    return HttpResponseRedirect('view-result') 
 
 
 @login_required(login_url='studentlogin')
@@ -117,7 +141,7 @@ def calculate_marks_view(request):
 def view_result_view(request):
     courses=QMODEL.Course.objects.all()
     return render(request,'student/view_result.html',{'courses':courses})
-    
+
   
 login_required(login_url='studentlogin')
 @user_passes_test(is_student)
@@ -139,13 +163,15 @@ def student_marks_view(request):
 @user_passes_test(is_student)
 def view_result_detail_view(request, result_id):
     result = QMODEL.Result.objects.get(id=result_id)
-
+    print("result",result)
     # Lấy danh sách câu hỏi của bài kiểm tra
     questions = QMODEL.Question.objects.filter(course=result.exam)
+    print("questions",questions)
     # Lấy các câu trả lời đã chọn bởi sinh viên
     selected_answers =[]
     for i in range(len(questions)):     #duyệt câu hỏi
         selected_answers.append(request.COOKIES.get(str(i+1)))  
+    print("các câu trả lời đã chọn bởi sinh viên",len(selected_answers))
     # Tạo danh sách chứa thông tin chi tiết về từng câu hỏi
     question_details = []
     count = 0 
@@ -177,28 +203,27 @@ def view_result_detail_view(request, result_id):
             'is_correct': is_correct,
         })
         count += 1
-
     # Truyền thông tin chi tiết vào template để hiển thị
     context = {
         'result': result,
-        'question_detastudentloginils': question_details,
+        'question_details': question_details,
     }
-
     return render(request, 'student/view_result_detail.html', context)
 
 
 
 @login_required(login_url='studentlogin') 
-def study_progress_student(request, student_id): # tiến trình vủa mỗi em học sinh
-    student = models.Student.objects.get(id=student_id)
+def study_progress_student(request, student_id): # tiến trình của mỗi em học sinh
+    student = models.Student.objects.get(id= student_id)
     courses = QMODEL.Course.objects.all()
     progress_data = []
+    print("course", courses)
     for course in courses:
         progress, created = QMODEL.StudyProgress.objects.get_or_create(student=student, course=course)
         progress_data.append({
             'course': course,
             'progress': progress,
         })
-    print("progress_data", progress_data)
+        print("progress_data", progress_data)
 
     return render(request, 'student/study_progress.html', {'student': student, 'progress_data': progress_data})
