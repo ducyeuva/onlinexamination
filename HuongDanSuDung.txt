@@ -1,0 +1,13 @@
+Sau khi cài đặt môi trường ảo và các thư viện cần thiết
+Chạy các lệnh sau:
++ python manage.py makemigrations
++ python manage.py migrate
+Chạy dự án trên localhost 8000 bằng cách thực hiện lệnh sau: python manage.py runserver 8000
+tk admin: admin1 ; password: 123456
+
+Nếu không có tk admin 
+Tạo Superuser bằng cách thực hiện lệnh sau:
+python manage.py createsuperuser
+Chạy dự án bằng cách thực hiện lệnh sau:
+python manage.py runserver 8000
+Giữ cho các thiết bị đầu cuối mở và chạy.

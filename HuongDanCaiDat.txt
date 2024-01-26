@@ -1,0 +1,11 @@
+1. Chọn một trình soạn thảo mã nguồn hoặc môi trường phát triển tích hợp (IDE) cho Python. Một số lựa chọn phổ biến bao gồm Visual Studio Code, PyCharm, hoặc Sublime Text.
+
+2. Cài đặt Git để quản lý mã nguồn và phiên bản. 
+
+3. Sử dụng virtualenv để tạo môi trường ảo cho project: pip install virtualenv
+
+4. Trong thư mục dự án, chạy lệnh sau để tạo môi trường ảo: virtualenv venv
+Chạy lệnh sau để kích hoạt môi trường ảo trên Window: .\venv\Scripts\activate
+Kích hoạt Môi trường ảo trên Linux/Mac: source venv/bin/activate
+
+Chạy lệnh sau để cài đặt tất cả các thư viện cần thiết từ tệp requirements.txt: pip install -r requirements.txt
